@@ -8,7 +8,11 @@
   --line: rgba(20, 32, 29, 0.13);
   --accent: #1E7368;
   --accent-soft: #DCEEEB;
-  --amber: #A9611E;
+  /* Darkened from the original #A9611E: on --amber-soft that hex measured
+     3.8:1 against WCAG AA's 4.5:1 minimum for small/bold text (callout
+     labels, the "medium" ease badge). This hue keeps the same warm-amber
+     identity at ~4.9:1+ on every light-mode surface it appears on. */
+  --amber: #8F5215;
   --amber-soft: #F3E3D2;
   --red: #A3352B;
   --red-soft: #F5DEDB;
@@ -142,12 +146,12 @@ h1, h2, h3 {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 38px; height: 38px;
-  border-radius: 9px;
+  width: 44px; height: 44px;
+  border-radius: 10px;
   border: 1px solid var(--line);
   background: var(--paper-raised);
   color: var(--ink);
-  font-size: 16px;
+  font-size: 17px;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -177,7 +181,8 @@ h1, h2, h3 {
   background: var(--paper-raised);
   color: var(--ink);
   font-family: 'Heebo', sans-serif;
-  font-size: 14px;
+  /* 16px minimum keeps iOS Safari from auto-zooming the page on focus. */
+  font-size: 16px;
   box-shadow: var(--shadow);
 }
 .site-search-results {
@@ -310,6 +315,34 @@ a.card:hover .card-icon { transform: scale(1.1) rotate(-4deg); }
 .pdf-frame-wrap iframe { width: 100%; height: 80vh; min-height: 500px; border: none; display: block; }
 .pdf-fallback { padding: 14px 18px; font-size: 13px; color: var(--ink-soft); border-top: 1px solid var(--line); }
 
+/* Mobile: a PDF crammed into an iframe means broken pinch-zoom and a tiny
+   native toolbar - a poor reading experience on a phone. Below 700px we
+   swap the iframe out for a clear, single-purpose card that opens the same
+   file in the device's own PDF viewer/app instead (see pdf_panel_html() in
+   generate_site.py). loading="lazy" on the (hidden) iframe means it is
+   never actually fetched on mobile, saving the download too. */
+.pdf-mobile-cta { display: none; }
+@media (max-width: 700px) {
+  .pdf-frame-wrap { display: none; }
+  .pdf-mobile-cta {
+    display: block; text-align: center; background: var(--paper-raised);
+    border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+    padding: 32px 22px;
+  }
+  .pdf-mobile-cta .pdf-mobile-icon {
+    width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 14px;
+    background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+  }
+  .pdf-mobile-cta .pdf-mobile-title { font-family: 'Frank Ruhl Libre', Georgia, serif; font-weight: 700; font-size: 16px; margin: 0 0 8px; }
+  .pdf-mobile-cta .pdf-mobile-text { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 20px; }
+  .pdf-mobile-cta .pdf-mobile-btn {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 48px;
+    padding: 0 26px; border-radius: 100px; background: var(--accent); color: var(--paper-raised);
+    font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 14.5px; text-decoration: none;
+  }
+}
+
 /* ---- article / chapter body typography ---- */
 
 .article-body h2 {
@@ -330,6 +363,7 @@ a.card:hover .card-icon { transform: scale(1.1) rotate(-4deg); }
 /* ---- inline footnote references + source list anchors ---- */
 
 a.fn-ref {
+  position: relative;
   color: var(--accent);
   text-decoration: none;
   font-weight: 600;
@@ -338,6 +372,15 @@ a.fn-ref {
   transition: background .15s, color .15s;
 }
 a.fn-ref:hover, a.fn-ref:focus-visible { background: var(--accent-soft); }
+/* The visible [N] glyph is a few px across - far below a comfortable tap
+   target. An invisible, absolutely-positioned hit area pads the touch
+   target out to a usable size without changing the glyph's inline layout
+   or the surrounding line spacing. */
+a.fn-ref::before {
+  content: '';
+  position: absolute;
+  inset: -11px -9px;
+}
 
 .article-body p:target {
   background: var(--accent-soft);
@@ -460,12 +503,13 @@ a.fn-ref:hover, a.fn-ref:focus-visible { background: var(--accent-soft); }
 
 /* mobile sidebar drawer */
 .side-nav-backdrop { display: none; }
+.side-nav-close { display: none; }
 @media (max-width: 900px) {
   .doc-layout { grid-template-columns: 1fr; }
   body:has(.side-nav) .menu-toggle { display: inline-flex; }
   .side-nav {
     position: fixed; inset-inline-start: 0; top: 0; bottom: 0; width: min(300px, 84vw);
-    background: var(--paper-raised); z-index: 40; padding: 20px; box-shadow: var(--shadow);
+    background: var(--paper-raised); z-index: 50; padding: 20px; box-shadow: var(--shadow);
     /* inset-inline-start:0 anchors this to the leading edge (right, in our
        always-RTL pages) - so "hidden" must translate further toward that
        same edge (positive X), not the opposite direction. */
@@ -477,6 +521,21 @@ a.fn-ref:hover, a.fn-ref:focus-visible { background: var(--accent-soft); }
     opacity: 0; pointer-events: none; transition: opacity .2s ease;
   }
   body.nav-open .side-nav-backdrop { opacity: 1; pointer-events: auto; }
+  /* Locks the background from scrolling behind the open drawer - the drawer
+     itself still scrolls internally via its own overflow-y. */
+  body.nav-open { overflow: hidden; }
+  /* An explicit, generously-sized close control inside the drawer: the
+     backdrop strip alone is a narrow, easy-to-miss target, and the header's
+     own hamburger sits under the backdrop (z-index 30) while the drawer is
+     open, so it cannot be tapped again to close. */
+  .side-nav-close {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    width: 100%; min-height: 44px; margin-bottom: 14px;
+    font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--ink-soft); background: var(--paper); border: 1px solid var(--line);
+    border-radius: 10px; cursor: pointer;
+  }
+  .side-nav-close:hover { color: var(--accent); border-color: var(--accent); }
 }
 
 /* ---- definition / callout boxes ---- */
@@ -531,10 +590,11 @@ a.fn-ref:hover, a.fn-ref:focus-visible { background: var(--accent-soft); }
   display: flex; align-items: center; gap: 10px; color: var(--ink);
 }
 .tech-item summary::-webkit-details-marker { display: none; }
-.tech-item summary::before {
-  content: '+'; font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 700; width: 16px; flex-shrink: 0;
-}
-.tech-item[open] summary::before { content: '−'; }
+/* The actual +/- marker is rendered by .tech-plusminus below (a real span,
+   not a pseudo-element) so it can sit between the numeric badge and the
+   title. An earlier ::before-based marker used to live here; a leftover
+   [open] override of it was still winning by specificity over this
+   section's own reset, so an open item briefly showed two "-" glyphs. */
 .tech-item .tech-body { padding: 0 18px 18px; font-size: 14px; color: var(--ink-soft); }
 .tech-item .tech-body p:last-child { margin-bottom: 0; }
 
@@ -554,7 +614,9 @@ a.fn-ref:hover, a.fn-ref:focus-visible { background: var(--accent-soft); }
 .glossary-search { margin-bottom: 24px; }
 .glossary-search input {
   width: 100%; padding: 12px 16px; border-radius: 100px; border: 1px solid var(--line);
-  background: var(--paper-raised); color: var(--ink); font-family: 'Heebo', sans-serif; font-size: 14.5px;
+  background: var(--paper-raised); color: var(--ink); font-family: 'Heebo', sans-serif;
+  /* 16px minimum keeps iOS Safari from auto-zooming the page on focus. */
+  font-size: 16px;
   box-shadow: var(--shadow);
 }
 .term-list { display: grid; gap: 12px; }
@@ -606,10 +668,21 @@ a.fn-ref:hover, a.fn-ref:focus-visible { background: var(--accent-soft); }
 .diagram-wrap svg { width: 100%; height: auto; display: block; }
 .diagram-wrap text { font-family: 'Heebo', sans-serif; fill: var(--ink); }
 
+/* On narrow screens a fixed-viewBox SVG shrunk to full container width makes
+   its labels illegible; each diagram sets its own min-width (see inline
+   style) so text never renders below a readable size, and this wrapper
+   scrolls horizontally to reveal the rest rather than squeezing the text. */
+@media (max-width: 700px) {
+  .diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .diagram-wrap:has(svg[style*="min-width"])::after {
+    content: '⟷ ניתן להחליק לצדדים לצפייה מלאה בתרשים';
+    display: block; font-size: 11px; color: var(--ink-soft); margin-top: 10px; text-align: center;
+  }
+}
+
 /* ---- technique accordion: numeric badge ---- */
 
 .tech-item summary { gap: 12px; }
-.tech-item summary::before { content: none; }
 .tech-item .tech-plusminus {
   font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 700;
   width: 18px; flex-shrink: 0; text-align: center;
@@ -720,6 +793,40 @@ a.fn-ref:hover, a.fn-ref:focus-visible { background: var(--accent-soft); }
 .ease-badge.easy { background: var(--accent-soft); color: var(--accent); }
 .ease-badge.medium { background: var(--amber-soft); color: var(--amber); }
 .ease-badge.hard { background: var(--red-soft); color: var(--red); }
+
+/* Below ~700px a 5-column table forces every cell to wrap onto several
+   lines, so reading one row means scrolling horizontally *and*
+   vertically at once. Each row becomes a stacked card instead: the
+   category cell is promoted to a card header, the remaining cells keep
+   their column label (from data-label, set in generate_site.py) beside
+   the value. No JS involved - purely a table -> card relayout. */
+@media (max-width: 700px) {
+  .compare-table-wrap {
+    overflow-x: visible; border: none; box-shadow: none; background: transparent;
+  }
+  .compare-table { min-width: 0; width: 100%; }
+  .compare-table thead { display: none; }
+  .compare-table, .compare-table tbody, .compare-table tr, .compare-table td { display: block; }
+  .compare-table tr {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden;
+  }
+  .compare-table tr:last-child { margin-bottom: 0; }
+  .compare-table td {
+    padding: 11px 16px; border-bottom: 1px solid var(--line); display: flex;
+    align-items: baseline; gap: 12px; text-align: start;
+  }
+  .compare-table td:last-child { border-bottom: none; }
+  .compare-table td::before {
+    content: attr(data-label); flex: 0 0 96px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; text-transform: uppercase;
+    letter-spacing: .03em; color: var(--ink-soft);
+  }
+  .compare-table td:first-child {
+    background: var(--paper); font-weight: 700; padding: 13px 16px;
+  }
+  .compare-table td:first-child::before { content: none; }
+}
 
 /* ---- cheat sheet (print page) ---- */
 

@@ -337,7 +337,7 @@ CASE_STUDIES_HTML = """
 """
 
 FIG1_SVG = """<div class="diagram-wrap reveal">
-<svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="סולם החומרה של מדיה סינתטית">
+<svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="סולם החומרה של מדיה סינתטית" style="min-width:560px;">
   <defs>
     <linearGradient id="sevGrad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="var(--accent)"/>
@@ -400,7 +400,7 @@ FIG3_HTML = three_col_diagram(
 )
 
 FIG4_SVG = """<div class="diagram-wrap reveal">
-<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="שלושה תחומי איום מרכזיים">
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="שלושה תחומי איום מרכזיים" style="min-width:430px;">
   <g transform="translate(250,200)">
     <circle r="170" fill="none" stroke="var(--line)" stroke-width="1"/>
     <circle r="115" fill="none" stroke="var(--line)" stroke-width="1"/>
@@ -439,25 +439,25 @@ COMPARE_TABLE_HTML = """
     </thead>
     <tbody>
       <tr>
-        <td><span class="compare-tag good">זיוף רדוד (Shallowfake)</span></td>
-        <td>ללא שימוש בבינה מלאכותית</td>
-        <td>נמוכה — עריכה ידנית בסיסית</td>
-        <td><span class="ease-badge easy">קל יחסית</span></td>
-        <td>האטת וידאו, חיתוך והדבקת דיבור, שינוי הקשר</td>
+        <td data-label="קטגוריה"><span class="compare-tag good">זיוף רדוד (Shallowfake)</span></td>
+        <td data-label="שימוש ב-AI">ללא שימוש בבינה מלאכותית</td>
+        <td data-label="מורכבות עריכה">נמוכה — עריכה ידנית בסיסית</td>
+        <td data-label="קלות זיהוי (יחסית)"><span class="ease-badge easy">קל יחסית</span></td>
+        <td data-label="דוגמה אופיינית">האטת וידאו, חיתוך והדבקת דיבור, שינוי הקשר</td>
       </tr>
       <tr>
-        <td><span class="compare-tag warn">זיוף עמוק (Deepfake)</span></td>
-        <td>מלא — GAN / מודל דיפוזיה</td>
-        <td>גבוהה — נדרש מודל מאומן ונתוני אימון</td>
-        <td><span class="ease-badge medium">בינוני</span></td>
-        <td>החלפת פנים בווידאו, שכפול קול (Voice Cloning)</td>
+        <td data-label="קטגוריה"><span class="compare-tag warn">זיוף עמוק (Deepfake)</span></td>
+        <td data-label="שימוש ב-AI">מלא — GAN / מודל דיפוזיה</td>
+        <td data-label="מורכבות עריכה">גבוהה — נדרש מודל מאומן ונתוני אימון</td>
+        <td data-label="קלות זיהוי (יחסית)"><span class="ease-badge medium">בינוני</span></td>
+        <td data-label="דוגמה אופיינית">החלפת פנים בווידאו, שכפול קול (Voice Cloning)</td>
       </tr>
       <tr>
-        <td><span class="compare-tag bad">זיוף ליינסטר (Leinster)</span></td>
-        <td>מלא + שכבת עריכה נוספת</td>
-        <td>גבוהה מאוד — הסוואה מכוונת של פגמים</td>
-        <td><span class="ease-badge hard">קשה מאוד</span></td>
-        <td>זיוף עמוק עם הוספת רעש/פילטר מדומה</td>
+        <td data-label="קטגוריה"><span class="compare-tag bad">זיוף ליינסטר (Leinster)</span></td>
+        <td data-label="שימוש ב-AI">מלא + שכבת עריכה נוספת</td>
+        <td data-label="מורכבות עריכה">גבוהה מאוד — הסוואה מכוונת של פגמים</td>
+        <td data-label="קלות זיהוי (יחסית)"><span class="ease-badge hard">קשה מאוד</span></td>
+        <td data-label="דוגמה אופיינית">זיוף עמוק עם הוספת רעש/פילטר מדומה</td>
       </tr>
     </tbody>
   </table>
@@ -489,9 +489,19 @@ def inject_glossary_terms(html_body, entries):
         safe_def = html.escape(definition, quote=True)
         return f'<span class="gloss-term" tabindex="0" data-def="{safe_def}">{term}</span>'
 
+    heading_tag_re = re.compile(r"^<(/?)h[1-4]\b", re.IGNORECASE)
     segments = re.split(r"(<[^>]+>)", html_body)
+    heading_depth = 0
     for i, seg in enumerate(segments):
         if seg.startswith("<"):
+            m = heading_tag_re.match(seg)
+            if m:
+                heading_depth += -1 if m.group(1) else 1
+                heading_depth = max(heading_depth, 0)
+            continue
+        # כותרות (h1-h4) מוחרגות בכוונה: תגית טולטיפ עם קו תחתי מקווקו
+        # פוגעת בבהירות הכותרת עצמה. המונח עדיין ייעטף בהופעתו הבאה בגוף הטקסט.
+        if heading_depth > 0:
             continue
         segments[i] = pattern.sub(repl, seg)
     return "".join(segments)
@@ -760,6 +770,7 @@ RESEARCH_CHAPTER_TITLES_FALLBACK = {
 
 def build_side_nav(chapters, current_chapter, rel):
     out = ['<nav class="side-nav" aria-label="ניווט בין פרקי המדריך">']
+    out.append('<button type="button" class="side-nav-close" aria-label="סגירת תפריט הניווט">✕ סגירה</button>')
     out.append('<p class="side-kicker">המדריך</p>')
     for n in range(1, 9):
         ch = chapters.get(n, {"title": CHAPTER_TITLES_FALLBACK[n]})
@@ -992,6 +1003,22 @@ def build_about_page(front, about_body):
 # 9. עמוד מקור (PDF)
 # ---------------------------------------------------------------------------
 
+def pdf_panel_html(pdf_href, iframe_title, doc_label, translation_note):
+    """בונה את תוכן הטאב עבור מסמך PDF אחד: תצוגת iframe מלאה (דסקטופ) וכרטיס
+    פתיחה חיצונית בולט (מובייל, ראה .pdf-mobile-cta ב-CSS) - הצגת PDF בתוך
+    iframe במסך טלפון היא חוויית גלילה/זום גרועה, ופתיחה חיצונית עדיפה שם."""
+    return f'''<div class="pdf-frame-wrap reveal">
+      <iframe src="{pdf_href}" title="{iframe_title}" loading="lazy"></iframe>
+      <p class="pdf-fallback">אם הקובץ אינו נטען: <a href="{pdf_href}">פתיחת ה-PDF בכרטיסייה נפרדת</a>. {translation_note}</p>
+    </div>
+    <div class="pdf-mobile-cta reveal">
+      <div class="pdf-mobile-icon">📄</div>
+      <p class="pdf-mobile-title">{doc_label}</p>
+      <p class="pdf-mobile-text">מסמך PDF מקורי באנגלית. תצוגה מקדימה בתוך העמוד אינה נוחה לקריאה במסך טלפון — מומלץ לפתוח את הקובץ ישירות באפליקציית ה-PDF או בכרטיסייה נפרדת. {translation_note}</p>
+      <a class="pdf-mobile-btn" href="{pdf_href}" target="_blank" rel="noopener">פתיחת ה-PDF ↗</a>
+    </div>'''
+
+
 def build_source_page():
     rel = ""
     page = f'''{page_head("מסמכי המקור — מדריך SynthWave", rel)}{header_html(rel, "source.html")}
@@ -1004,16 +1031,20 @@ def build_source_page():
     <button class="tab-btn" data-tab="tab-research" role="tab" aria-selected="false">Research Study &ndash; Forged Realities</button>
   </div>
   <div id="tab-guideline" class="tab-panel">
-    <div class="pdf-frame-wrap reveal">
-      <iframe src="assets/source/interpol-synthwave-guideline.pdf" title="INTERPOL Project SynthWave Global Guideline PDF"></iframe>
-      <p class="pdf-fallback">אם הקובץ אינו נטען: <a href="assets/source/interpol-synthwave-guideline.pdf">פתיחת ה-PDF בכרטיסייה נפרדת</a>. תרגום מלא לעברית זמין <a href="chapters/ch1.html">בפרקי המדריך</a>.</p>
-    </div>
+    {pdf_panel_html(
+        "assets/source/interpol-synthwave-guideline.pdf",
+        "INTERPOL Project SynthWave Global Guideline PDF",
+        "Global Guideline – False Facades",
+        'תרגום מלא לעברית זמין <a href="chapters/ch1.html">בפרקי המדריך</a>.',
+    )}
   </div>
   <div id="tab-research" class="tab-panel" hidden>
-    <div class="pdf-frame-wrap reveal">
-      <iframe src="assets/source/interpol-synthwave-research-forged-realities.pdf" title="INTERPOL Project SynthWave Research Study PDF"></iframe>
-      <p class="pdf-fallback">אם הקובץ אינו נטען: <a href="assets/source/interpol-synthwave-research-forged-realities.pdf">פתיחת ה-PDF בכרטיסייה נפרדת</a>. תרגום מלא לעברית זמין <a href="research.html">בעמוד המחקר</a>.</p>
-    </div>
+    {pdf_panel_html(
+        "assets/source/interpol-synthwave-research-forged-realities.pdf",
+        "INTERPOL Project SynthWave Research Study PDF",
+        "Research Study – Forged Realities",
+        'תרגום מלא לעברית זמין <a href="research.html">בעמוד המחקר</a>.',
+    )}
   </div>
 </main>
 {footer_html(rel)}{scripts_html(rel)}'''

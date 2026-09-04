@@ -102,6 +102,11 @@
       sideNav.classList.toggle('is-open');
     });
     backdrop.addEventListener('click', close);
+    var closeBtn = sideNav.querySelector('.side-nav-close');
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
     sideNav.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', close);
     });
