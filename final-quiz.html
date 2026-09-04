@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מבחן מסכם — מדריך SynthWave</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+</head>
+<body data-rel="">
+<header class="site-header">
+  <nav class="site-nav">
+    <a class="brand" href="index.html">🛡️ SynthWave <span>מדריך הדרכה</span></a>
+    <ul>
+      <li><a class="nav-link" href="index.html">בית</a></li>
+      <li><a class="nav-link" href="chapters/ch1.html">פרקי המדריך</a></li>
+      <li><a class="nav-link" href="research.html">מחקר: Forged Realities</a></li>
+      <li><a class="nav-link" href="glossary.html">מילון מונחים</a></li>
+      <li><a class="nav-link active" href="final-quiz.html">מבחן מסכם</a></li>
+      <li><a class="nav-link" href="cheat-sheet.html">דף סיכום</a></li>
+      <li><a class="nav-link" href="source.html">מסמך המקור</a></li>
+      <li><a class="nav-link" href="references.html">מקורות והערות שוליים</a></li>
+      <li><a class="nav-link" href="about.html">אודות המדריך</a></li>
+    </ul>
+    <div class="nav-utils">
+      <button class="search-toggle" type="button" aria-label="חיפוש באתר" aria-expanded="false">🔍</button>
+      <button class="menu-toggle" type="button" aria-label="פתיחת תפריט">☰</button>
+    </div>
+  </nav>
+  <div class="site-search" hidden>
+    <input type="search" id="site-search-input" placeholder="חיפוש בפרקים ובמילון המונחים...">
+    <div class="site-search-results" hidden></div>
+  </div>
+</header>
+<main class="wrap medium">
+  <p class="kicker reveal">בדיקת ידע מסכמת</p>
+  <h1 class="reveal">מבחן מסכם על כל פרקי המדריך</h1>
+  <p class="reveal">מבחר שאלות מייצג מתוך כל שמונת הפרקים. הציון נשמר במכשיר זה בלבד (localStorage בדפדפן), לצורך מעקב אישי אחר ההתקדמות — הוא אינו נשלח לאף שרת.</p>
+  <div class="quiz-block final-quiz reveal">
+  <div id="final-quiz-previous" class="final-quiz-previous" hidden>
+    📌 הציון האחרון שנשמר במכשיר זה: <strong class="prev-pct"></strong> (<span class="prev-date"></span>)
+  </div>
+  <div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 1</span>1. מהו "עקרון ליינסטר" (The Leinster Principle)?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-0" data-correct="false" data-explain="עקרון ליינסטר מתאר הוספה מכוונת של פגמים הקשריים לזיוף עמוק, כדי להקשות הן על זיהוי אנושי והן על זיהוי אוטומטי."> <span>שיטה סטטיסטית לזיהוי זיופים באמצעות בדיקת רעש רקע בלבד</span></label><label class="quiz-opt"><input type="radio" name="qfinal-0" data-correct="true" data-explain="עקרון ליינסטר מתאר הוספה מכוונת של פגמים הקשריים לזיוף עמוק, כדי להקשות הן על זיהוי אנושי והן על זיהוי אוטומטי."> <span>תופעה שבה זיופים עמוקים משולבים בכוונה עם פגמים הקשריים (כמו רעש או פילטרים) כדי לדמות פגמים טבעיים ולעקוף זיהוי</span></label><label class="quiz-opt"><input type="radio" name="qfinal-0" data-correct="false" data-explain="עקרון ליינסטר מתאר הוספה מכוונת של פגמים הקשריים לזיוף עמוק, כדי להקשות הן על זיהוי אנושי והן על זיהוי אוטומטי."> <span>חוק בינלאומי המסדיר שימוש בבינה מלאכותית ליצירת מדיה</span></label><label class="quiz-opt"><input type="radio" name="qfinal-0" data-correct="false" data-explain="עקרון ליינסטר מתאר הוספה מכוונת של פגמים הקשריים לזיוף עמוק, כדי להקשות הן על זיהוי אנושי והן על זיהוי אוטומטי."> <span>כלי תוכנה לזיהוי זיוף רדוד בלבד</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 1</span>2. מה ההבדל המרכזי בין זיוף עמוק לזיוף רדוד?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-1" data-correct="true" data-explain="זיוף עמוק = תוכן שנוצר/שונה על ידי AI; זיוף רדוד = עריכה ידנית של תוכן אמיתי, ללא מעורבות בינה מלאכותית."> <span>זיוף עמוק משתמש בבינה מלאכותית ליצירת תוכן סינתטי, בעוד זיוף רדוד מבוסס על עריכה ידנית פשוטה של תוכן אמיתי, ללא AI</span></label><label class="quiz-opt"><input type="radio" name="qfinal-1" data-correct="false" data-explain="זיוף עמוק = תוכן שנוצר/שונה על ידי AI; זיוף רדוד = עריכה ידנית של תוכן אמיתי, ללא מעורבות בינה מלאכותית."> <span>זיוף רדוד תמיד יקר יותר להפקה</span></label><label class="quiz-opt"><input type="radio" name="qfinal-1" data-correct="false" data-explain="זיוף עמוק = תוכן שנוצר/שונה על ידי AI; זיוף רדוד = עריכה ידנית של תוכן אמיתי, ללא מעורבות בינה מלאכותית."> <span>זיוף עמוק תמיד קל יותר לזיהוי בעין בלתי מזוינת</span></label><label class="quiz-opt"><input type="radio" name="qfinal-1" data-correct="false" data-explain="זיוף עמוק = תוכן שנוצר/שונה על ידי AI; זיוף רדוד = עריכה ידנית של תוכן אמיתי, ללא מעורבות בינה מלאכותית."> <span>אין הבדל מהותי — שני המונחים מתארים את אותה תופעה</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 2</span>3. לפי הדיווח שצוין במדריך, כמה הפסידו קורבנות הונאות דיפייק ברבעון הראשון של 2025 בלבד (הערכה עולמית)?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-2" data-correct="false" data-explain="לפי דו״ח Resemble.AI, בעבור Q1 2025 בלבד הוערך הנזק בכ-200 מיליון דולר מהונאות דיפייק."> <span>2 מיליון דולר</span></label><label class="quiz-opt"><input type="radio" name="qfinal-2" data-correct="true" data-explain="לפי דו״ח Resemble.AI, בעבור Q1 2025 בלבד הוערך הנזק בכ-200 מיליון דולר מהונאות דיפייק."> <span>200 מיליון דולר</span></label><label class="quiz-opt"><input type="radio" name="qfinal-2" data-correct="false" data-explain="לפי דו״ח Resemble.AI, בעבור Q1 2025 בלבד הוערך הנזק בכ-200 מיליון דולר מהונאות דיפייק."> <span>25.6 מיליון דולר</span></label><label class="quiz-opt"><input type="radio" name="qfinal-2" data-correct="false" data-explain="לפי דו״ח Resemble.AI, בעבור Q1 2025 בלבד הוערך הנזק בכ-200 מיליון דולר מהונאות דיפייק."> <span>44.5 מיליארד דולר</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 2</span>4. מהו "דיבידנד השקרן" (Liar's Dividend)?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-3" data-correct="false" data-explain="ככל שהמודעות לדיפייקים גוברת, כך גדל הסיכון שראיות אמיתיות יידחו כ&quot;מזויפות&quot; — זהו &quot;דיבידנד השקרן&quot;."> <span>רווח כספי שמפיק יוצר הדיפייק מהונאה מוצלחת</span></label><label class="quiz-opt"><input type="radio" name="qfinal-3" data-correct="true" data-explain="ככל שהמודעות לדיפייקים גוברת, כך גדל הסיכון שראיות אמיתיות יידחו כ&quot;מזויפות&quot; — זהו &quot;דיבידנד השקרן&quot;."> <span>האפשרות לדחות ראיה אמיתית בטענה שהיא "מזויפת", כך שראיות אותנטיות מאבדות אמינות</span></label><label class="quiz-opt"><input type="radio" name="qfinal-3" data-correct="false" data-explain="ככל שהמודעות לדיפייקים גוברת, כך גדל הסיכון שראיות אמיתיות יידחו כ&quot;מזויפות&quot; — זהו &quot;דיבידנד השקרן&quot;."> <span>פיצוי כספי הניתן לקורבנות דיפייק בבתי משפט</span></label><label class="quiz-opt"><input type="radio" name="qfinal-3" data-correct="false" data-explain="ככל שהמודעות לדיפייקים גוברת, כך גדל הסיכון שראיות אמיתיות יידחו כ&quot;מזויפות&quot; — זהו &quot;דיבידנד השקרן&quot;."> <span>שיטת זיהוי המבוססת על ניתוח אודיו</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 3</span>5. מהן שלוש הפונקציות המרכזיות שממלא "מקור ותולדות הקובץ" בתהליך הפורנזי?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-4" data-correct="false" data-explain="שלוש הפונקציות: החרגת חומר עם מקור לא מאומת, מתן הקשר לתוכן הקובץ, וחיזוק ממצאים אנליטיים דרך השוואה למקור."> <span>הצפנה, דחיסה, גיבוי</span></label><label class="quiz-opt"><input type="radio" name="qfinal-4" data-correct="true" data-explain="שלוש הפונקציות: החרגת חומר עם מקור לא מאומת, מתן הקשר לתוכן הקובץ, וחיזוק ממצאים אנליטיים דרך השוואה למקור."> <span>שמירת סף (Gatekeeping), הקשרה (Contextualizing) ותימוכין (Corroborating)</span></label><label class="quiz-opt"><input type="radio" name="qfinal-4" data-correct="false" data-explain="שלוש הפונקציות: החרגת חומר עם מקור לא מאומת, מתן הקשר לתוכן הקובץ, וחיזוק ממצאים אנליטיים דרך השוואה למקור."> <span>זיהוי, אימות, שיפוט</span></label><label class="quiz-opt"><input type="radio" name="qfinal-4" data-correct="false" data-explain="שלוש הפונקציות: החרגת חומר עם מקור לא מאומת, מתן הקשר לתוכן הקובץ, וחיזוק ממצאים אנליטיים דרך השוואה למקור."> <span>מחיקה, שחזור, ארכוב</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 3</span>6. מדוע הטבעת סימני מים (watermarking) אינה יכולה לשמש כפתרון עצמאי?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-5" data-correct="false" data-explain="חשיפת שיטת ההטבעה מאפשרת זיוף או הסרה של הסימן עצמו, ולכן יש להשתמש בה כחלק ממערך רחב יותר, לא כפתרון בודד."> <span>היא יקרה מדי ליישום</span></label><label class="quiz-opt"><input type="radio" name="qfinal-5" data-correct="true" data-explain="חשיפת שיטת ההטבעה מאפשרת זיוף או הסרה של הסימן עצמו, ולכן יש להשתמש בה כחלק ממערך רחב יותר, לא כפתרון בודד."> <span>אם שיטת ההטבעה נחשפת, ניתן להוסיף סימן מים לתוכן שלא הכיל אותו במקור, או להסירו מתוכן שכן הכיל אותו</span></label><label class="quiz-opt"><input type="radio" name="qfinal-5" data-correct="false" data-explain="חשיפת שיטת ההטבעה מאפשרת זיוף או הסרה של הסימן עצמו, ולכן יש להשתמש בה כחלק ממערך רחב יותר, לא כפתרון בודד."> <span>היא עובדת רק על קבצי טקסט</span></label><label class="quiz-opt"><input type="radio" name="qfinal-5" data-correct="false" data-explain="חשיפת שיטת ההטבעה מאפשרת זיוף או הסרה של הסימן עצמו, ולכן יש להשתמש בה כחלק ממערך רחב יותר, לא כפתרון בודד."> <span>אין לה תוקף משפטי באף מדינה</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 4</span>7. מהו ההבדל בין שלב ה"זיהוי" (Identification) לשלב ה"אימות" (Authentication)?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-6" data-correct="false" data-explain="זיהוי הוא שלב ראשוני של הרמת חשד; אימות הוא הליך פורנזי מלא המבוסס על סמנים מבוססים ומבוצע במסגרת מקצועית."> <span>שני המונחים זהים לחלוטין</span></label><label class="quiz-opt"><input type="radio" name="qfinal-6" data-correct="true" data-explain="זיהוי הוא שלב ראשוני של הרמת חשד; אימות הוא הליך פורנזי מלא המבוסס על סמנים מבוססים ומבוצע במסגרת מקצועית."> <span>זיהוי הוא הרמת דגל ראשונית שיכולה להיעשות ע״י כל גורם, בעוד אימות הוא עיבוד פורנזי מלא ומכריע יותר, המבוצע ע״י מומחה</span></label><label class="quiz-opt"><input type="radio" name="qfinal-6" data-correct="false" data-explain="זיהוי הוא שלב ראשוני של הרמת חשד; אימות הוא הליך פורנזי מלא המבוסס על סמנים מבוססים ומבוצע במסגרת מקצועית."> <span>אימות מתבצע רק על ידי בינה מלאכותית</span></label><label class="quiz-opt"><input type="radio" name="qfinal-6" data-correct="false" data-explain="זיהוי הוא שלב ראשוני של הרמת חשד; אימות הוא הליך פורנזי מלא המבוסס על סמנים מבוססים ומבוצע במסגרת מקצועית."> <span>זיהוי מתבצע רק בתוך אולם בית המשפט</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 4</span>8. מהי מטרת "ניתוח תדר רשת החשמל" (ENF Analysis)?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-7" data-correct="false" data-explain="תנודות תדר רשת החשמל משתנות באופן ייחודי בזמן ובמקום, ולכן ניתן להשוותן למאגר ייחוס לזיהוי מועד/מיקום הקלטה."> <span>למדוד את איכות הדחיסה של קובץ האודיו</span></label><label class="quiz-opt"><input type="radio" name="qfinal-7" data-correct="true" data-explain="תנודות תדר רשת החשמל משתנות באופן ייחודי בזמן ובמקום, ולכן ניתן להשוותן למאגר ייחוס לזיהוי מועד/מיקום הקלטה."> <span>לזהות תנודות בתדר רשת החשמל (50/60Hz) שנקלטות בטעות בהקלטה, המשמשות כ"חותמת זמן ומקום" ייחודית</span></label><label class="quiz-opt"><input type="radio" name="qfinal-7" data-correct="false" data-explain="תנודות תדר רשת החשמל משתנות באופן ייחודי בזמן ובמקום, ולכן ניתן להשוותן למאגר ייחוס לזיהוי מועד/מיקום הקלטה."> <span>לחשב את עוצמת האות הכוללת</span></label><label class="quiz-opt"><input type="radio" name="qfinal-7" data-correct="false" data-explain="תנודות תדר רשת החשמל משתנות באופן ייחודי בזמן ובמקום, ולכן ניתן להשוותן למאגר ייחוס לזיהוי מועד/מיקום הקלטה."> <span>לזהות שינויי טמפרטורה במיקרופון</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 5</span>9. מה נדרש כדי שתוצאת כלי AI תיחשב קבילה בבית משפט, בהשוואה לניתוח DNA?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-8" data-correct="false" data-explain="בניתוח DNA ניתן להצביע במדויק על ה&quot;loci&quot; שהובילו למסקנה; ברוב כלי ה-AI זה בלתי אפשרי, ולכן קבילותם מוגבלת."> <span>סף ביטחון של 50% בלבד</span></label><label class="quiz-opt"><input type="radio" name="qfinal-8" data-correct="true" data-explain="בניתוח DNA ניתן להצביע במדויק על ה&quot;loci&quot; שהובילו למסקנה; ברוב כלי ה-AI זה בלתי אפשרי, ולכן קבילותם מוגבלת."> <span>יכולת הסבר מלאה של הגורמים (loci) שהובילו למסקנה, יחד עם שחזוריות ועמידה בביקורת עמיתים — דבר שרוב כלי ה-AI הנוכחיים אינם מספקים</span></label><label class="quiz-opt"><input type="radio" name="qfinal-8" data-correct="false" data-explain="בניתוח DNA ניתן להצביע במדויק על ה&quot;loci&quot; שהובילו למסקנה; ברוב כלי ה-AI זה בלתי אפשרי, ולכן קבילותם מוגבלת."> <span>אין צורך בסף ביטחון כלל</span></label><label class="quiz-opt"><input type="radio" name="qfinal-8" data-correct="false" data-explain="בניתוח DNA ניתן להצביע במדויק על ה&quot;loci&quot; שהובילו למסקנה; ברוב כלי ה-AI זה בלתי אפשרי, ולכן קבילותם מוגבלת."> <span>די באישור של יצרן הכלי</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 5</span>10. כיצד בא לידי ביטוי "תער אוקהאם" (Occam's Razor) בשילוב AI בפורנזיקה דיגיטלית?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-9" data-correct="false" data-explain="פתרון עם פחות הנחות (בקרה אנושית + הסבירות) מועדף על פתרון &quot;קופסה שחורה&quot; שדורש הנחת אמון לא-מוסברת."> <span>יש להעדיף תמיד את הכלי הטכנולוגי המתקדם ביותר</span></label><label class="quiz-opt"><input type="radio" name="qfinal-9" data-correct="true" data-explain="פתרון עם פחות הנחות (בקרה אנושית + הסבירות) מועדף על פתרון &quot;קופסה שחורה&quot; שדורש הנחת אמון לא-מוסברת."> <span>יש להעדיף את הפתרון עם פחות הנחות בלתי-מוכחות — פיקוח אנושי עם כלים ברי-הסבר, על פני קופסה שחורה מורכבת</span></label><label class="quiz-opt"><input type="radio" name="qfinal-9" data-correct="false" data-explain="פתרון עם פחות הנחות (בקרה אנושית + הסבירות) מועדף על פתרון &quot;קופסה שחורה&quot; שדורש הנחת אמון לא-מוסברת."> <span>יש להשתמש רק בשיטות ידניות ולעולם לא ב-AI</span></label><label class="quiz-opt"><input type="radio" name="qfinal-9" data-correct="false" data-explain="פתרון עם פחות הנחות (בקרה אנושית + הסבירות) מועדף על פתרון &quot;קופסה שחורה&quot; שדורש הנחת אמון לא-מוסברת."> <span>יש להפעיל כמה שיותר מודלים בו-זמנית</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 6</span>11. מהם שלושת מגזרי ההכשרה שהמדריך מזהה בתחום?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-10" data-correct="false" data-explain="כל מגזר תורם היבט שונה: קפדנות אקדמית, רלוונטיות תפעולית, ומומחיות ספציפית-לכלי — שילוב ביניהם הוא האידיאלי."> <span>פרטי, ציבורי, צבאי</span></label><label class="quiz-opt"><input type="radio" name="qfinal-10" data-correct="true" data-explain="כל מגזר תורם היבט שונה: קפדנות אקדמית, רלוונטיות תפעולית, ומומחיות ספציפית-לכלי — שילוב ביניהם הוא האידיאלי."> <span>אקדמי, מקצועי-משטרתי (Vocational) וייעודי-יצרן (Proprietary)</span></label><label class="quiz-opt"><input type="radio" name="qfinal-10" data-correct="false" data-explain="כל מגזר תורם היבט שונה: קפדנות אקדמית, רלוונטיות תפעולית, ומומחיות ספציפית-לכלי — שילוב ביניהם הוא האידיאלי."> <span>מקומי, ארצי, בינלאומי</span></label><label class="quiz-opt"><input type="radio" name="qfinal-10" data-correct="false" data-explain="כל מגזר תורם היבט שונה: קפדנות אקדמית, רלוונטיות תפעולית, ומומחיות ספציפית-לכלי — שילוב ביניהם הוא האידיאלי."> <span>בסיסי, מתקדם, מומחה</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 6</span>12. מהי "הטיית מתחזה" (Impostor Bias)?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-11" data-correct="false" data-explain="ללא הכשרה מתאימה במדיה אותנטית, נוצרת נטייה לפקפק בראיות אמיתיות רק בגלל המודעות הגוברת לקיום דיפייקים."> <span>נטייה לפרש נכון כל תוכן דיפייק</span></label><label class="quiz-opt"><input type="radio" name="qfinal-11" data-correct="true" data-explain="ללא הכשרה מתאימה במדיה אותנטית, נוצרת נטייה לפקפק בראיות אמיתיות רק בגלל המודעות הגוברת לקיום דיפייקים."> <span>נטייה לפקפק ביתר על אותנטיות של מדיה אמיתית וחוקית, כתוצאה ממודעות-יתר לקיומם של דיפייקים — לא מבוסס על תוכן הקובץ עצמו</span></label><label class="quiz-opt"><input type="radio" name="qfinal-11" data-correct="false" data-explain="ללא הכשרה מתאימה במדיה אותנטית, נוצרת נטייה לפקפק בראיות אמיתיות רק בגלל המודעות הגוברת לקיום דיפייקים."> <span>הטיה שמופיעה רק אצל מומחי AI</span></label><label class="quiz-opt"><input type="radio" name="qfinal-11" data-correct="false" data-explain="ללא הכשרה מתאימה במדיה אותנטית, נוצרת נטייה לפקפק בראיות אמיתיות רק בגלל המודעות הגוברת לקיום דיפייקים."> <span>חוסר אמון גורף של בתי משפט במומחים פורנזיים</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 7</span>13. מהו האתגר המרכזי המתואר בפרק זה בנוגע למצב החקיקה העולמי?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-12" data-correct="false" data-explain="בהיעדר תיאום בינלאומי, כל מדינה מפתחת מסגרת שונה, מה שמקשה מאוד על חקירות ושיתופי פעולה חוצי-גבולות."> <span>חוסר תקציב לאכיפת חוק</span></label><label class="quiz-opt"><input type="radio" name="qfinal-12" data-correct="true" data-explain="בהיעדר תיאום בינלאומי, כל מדינה מפתחת מסגרת שונה, מה שמקשה מאוד על חקירות ושיתופי פעולה חוצי-גבולות."> <span>שונות רחבה ופרגמנטציה בין מדינות בחוקים הרלוונטיים לדיפייקים, המקשה על אכיפה עקבית ושיתוף פעולה חוצה-גבולות</span></label><label class="quiz-opt"><input type="radio" name="qfinal-12" data-correct="false" data-explain="בהיעדר תיאום בינלאומי, כל מדינה מפתחת מסגרת שונה, מה שמקשה מאוד על חקירות ושיתופי פעולה חוצי-גבולות."> <span>ריבוי שפות בהליכים משפטיים</span></label><label class="quiz-opt"><input type="radio" name="qfinal-12" data-correct="false" data-explain="בהיעדר תיאום בינלאומי, כל מדינה מפתחת מסגרת שונה, מה שמקשה מאוד על חקירות ושיתופי פעולה חוצי-גבולות."> <span>מחסור בשופטים בתחום הפלילי</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div><div class="quiz-card">
+  <p class="quiz-q"><span class="quiz-chtag">פרק 8</span>14. מהי ההמלצה המרכזית "לטווח קצר" (Short Term) המופיעה במדריך?</p>
+  <div class="quiz-opts"><label class="quiz-opt"><input type="radio" name="qfinal-13" data-correct="false" data-explain="אמנה בינלאומית מוגדרת כהמלצת טווח ארוך; ההמלצה המיידית ביותר היא בניית אוריינות AI בסיסית בקרב אנשי אכיפת החוק."> <span>חתימה על אמנה בינלאומית מחייבת</span></label><label class="quiz-opt"><input type="radio" name="qfinal-13" data-correct="true" data-explain="אמנה בינלאומית מוגדרת כהמלצת טווח ארוך; ההמלצה המיידית ביותר היא בניית אוריינות AI בסיסית בקרב אנשי אכיפת החוק."> <span>פיתוח אוריינות מדיה מבוססת-AI (AI Media Literacy) עבור גורמי אכיפת חוק</span></label><label class="quiz-opt"><input type="radio" name="qfinal-13" data-correct="false" data-explain="אמנה בינלאומית מוגדרת כהמלצת טווח ארוך; ההמלצה המיידית ביותר היא בניית אוריינות AI בסיסית בקרב אנשי אכיפת החוק."> <span>הקמת בית משפט בינלאומי ייעודי</span></label><label class="quiz-opt"><input type="radio" name="qfinal-13" data-correct="false" data-explain="אמנה בינלאומית מוגדרת כהמלצת טווח ארוך; ההמלצה המיידית ביותר היא בניית אוריינות AI בסיסית בקרב אנשי אכיפת החוק."> <span>איסור מוחלט על שימוש בבינה מלאכותית במשטרה</span></label></div>
+  <button class="quiz-check" type="button">בדיקת תשובה</button>
+  <div class="quiz-feedback"></div>
+</div>
+  <p class="quiz-score"></p>
+  <div class="final-quiz-result" hidden>
+    <p class="final-quiz-pct"></p>
+    <p class="final-quiz-detail"></p>
+  </div>
+</div>
+</main><footer class="site-footer">
+  <div class="wrap">
+    <p class="citation">
+      מבוסס על: INTERPOL (2026). <em>[Project SynthWave] Global Guideline &ndash; False Facades</em>.
+      מדריך הדרכה פנימי בנושא זיהוי ואימות מדיה סינתטית (דיפייקים וזיופים רדודים) עבור גורמי אכיפת חוק.
+    </p>
+    <div class="footer-credit">
+      <div class="logos">
+        <span class="logo-chip"><img src="assets/img/logo-mazap.jpg" alt="לוגו מז&quot;פ — החטיבה לזיהוי פלילי" onerror="this.setAttribute('data-missing','')"></span>
+        <span class="logo-chip"><img src="assets/img/logo-mop.jpg" alt="לוגו מו&quot;פ — מדור מחקר ופיתוח" onerror="this.setAttribute('data-missing','')"></span>
+      </div>
+      <p class="credit-text">תרגום, עיצוב הדרכה ופיתוח האתר: <strong>מדור מחקר ופיתוח (מו״פ)</strong>, החטיבה לזיהוי פלילי (מז״פ), משטרת ישראל.</p>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
